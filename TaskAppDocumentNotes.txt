@@ -1,0 +1,12 @@
+dotnet add package Microsoft.EntityFrameworkCore.SqlServer
+
+dotnet add package Microsoft.EntityFrameWorkCore.Tools
+
+dotnet add package Microsoft.EntityFrameworkCore.Design
+
+dotnet tool install --global dotnet-ef
+dotnet ef dbcontext scaffold "User Id=db25402;Password=6Xr?x=P35Mq!;Data Source=(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=db25402.public.databaseasp.net)(PORT=1433))Database=MyDatabase;Trusted_Connection=True;" Microsoft.EntityFrameworkCore.SqlServer --output-dir Models --context ModelContext --force
+dotnet ef dbcontext scaffold 'Server=db25402.databaseasp.net 1433;Database=db25402;User Id=db25402;Password=6Xr?x=P35Mq!;Encrypt=False;MultipleActiveREsultSets=True;Trusted_Connection=True;' Microsoft.EntityFrameworkCore.SqlServer --output-dir Models --context ModelContext --force
+dotnet ef dbcontext scaffold 'Server=db25402.databaseasp.net,1433;Database=db25402;User Id=db25402;Password=6Xr?x=P35Mq!;Encrypt=False;MultipleActiveResultSets=True;' Microsoft.EntityFrameworkCore.SqlServer --output-dir Models --context ModelContext --force
+dotnet ef dbcontext scaffold 'Server=db25402.databaseasp.net,1433;Database=db25402;User Id=db25402;Password=6Xr?x=P35Mq!;Encrypt=True;TrustServerCertificate=True;' Microsoft.EntityFrameworkCore.SqlServer --output-dir Models --context ModelContext --force
+dotnet ef dbcontext scaffold 'Server=db25402.databaseasp.net;User Id=db25402;Password=6Xr?x=P35Mq!;Data Source=(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=db25402.databaseasp.net)(PORT=1433)))' Microsoft.EntityFrameworkCore.SqlServer --output-dir Models --context ModelContext --force
