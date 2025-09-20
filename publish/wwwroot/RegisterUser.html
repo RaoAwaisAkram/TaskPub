@@ -1,0 +1,73 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Register User</title>
+  <style>
+    body{font-family:system-ui,Segoe UI,Roboto;display:flex;align-items:center;justify-content:center;height:100vh;background:#f6f7fb}
+    .card{background:white;padding:20px;border-radius:8px;box-shadow:0 6px 18px rgba(0,0,0,.06);width:360px}
+    input,button{width:100%;padding:10px;margin-top:8px;border-radius:6px;border:1px solid #ddd}
+    .help{font-size:13px;color:#666;margin-top:6px}
+    .success{color:green}
+    .error{color:#b00020}
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h3>Register User</h3>
+
+    <input id="username" placeholder="Username" required />
+    <input id="email" placeholder="Email (optional)" />
+    <input id="password" type="password" placeholder="Password" required />
+    <input id="fullname" placeholder="Full name" required />
+    <input id="phone" placeholder="Phone number" />
+
+    <button id="submit">Register</button>
+    <div id="msg" class="help"></div>
+  </div>
+
+  <script>
+    document.getElementById('submit').addEventListener('click', async () => {
+      const msg = document.getElementById('msg');
+      msg.textContent = '';
+
+      const payload = {
+        username: document.getElementById('username').value.trim(),
+        email: document.getElementById('email').value.trim(),
+        passwordhash: document.getElementById('password').value, // send raw; server must hash
+        fullname: document.getElementById('fullname').value.trim(),
+        phonenumber: document.getElementById('phone').value.trim()
+      };
+
+      if (!payload.username || !payload.passwordhash) {
+        msg.textContent = 'Username and password required';
+        msg.className = 'help error';
+        return;
+      }
+
+      try {
+        const base = window.API_BASE || ''; // optionally set window.API_BASE to your server root
+        const res = await fetch(`${base}/api/RegisterUser/RegisterUser`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+
+        if (!res.ok) {
+          const text = await res.text();
+          msg.textContent = `Error: ${res.status} ${text}`;
+          msg.className = 'help error';
+          return;
+        }
+
+        const data = await res.json();
+        msg.textContent = 'Registered successfully (UserId: ' + (data.regUser?.userid ?? data.userid ?? '') + ')';
+        msg.className = 'help success';
+      } catch (err) {
+        msg.textContent = 'Network error: ' + err;
+        msg.className = 'help error';
+      }
+    });
+  </script>
+</body>
+</html>

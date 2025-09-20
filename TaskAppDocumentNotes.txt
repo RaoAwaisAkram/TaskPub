@@ -10,3 +10,10 @@ dotnet ef dbcontext scaffold 'Server=db25402.databaseasp.net 1433;Database=db254
 dotnet ef dbcontext scaffold 'Server=db25402.databaseasp.net,1433;Database=db25402;User Id=db25402;Password=6Xr?x=P35Mq!;Encrypt=False;MultipleActiveResultSets=True;' Microsoft.EntityFrameworkCore.SqlServer --output-dir Models --context ModelContext --force
 dotnet ef dbcontext scaffold 'Server=db25402.databaseasp.net,1433;Database=db25402;User Id=db25402;Password=6Xr?x=P35Mq!;Encrypt=True;TrustServerCertificate=True;' Microsoft.EntityFrameworkCore.SqlServer --output-dir Models --context ModelContext --force
 dotnet ef dbcontext scaffold 'Server=db25402.databaseasp.net;User Id=db25402;Password=6Xr?x=P35Mq!;Data Source=(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=db25402.databaseasp.net)(PORT=1433)))' Microsoft.EntityFrameworkCore.SqlServer --output-dir Models --context ModelContext --force
+
+dotnet ef dbcontext scaffold 'Server=db25402.public.databaseasp.net; Database=db25402; User Id=db25402; Password=6Xr?x=P35Mq!;Trusted_Connection=True;TrustServerCertificate=True; Encrypt=True; TrustServerCertificate=True; MultipleActiveResultSets=True;' Microsoft.EntityFrameworkCore.SqlServer --output-dir Models --context ModelContext --force
+
+dotnet ef dbcontext scaffold 'Server=db25402.public.databaseasp.net; Database=db25402; User Id=db25402; Password=6Xr?x=P35Mq!;TrustServerCertificate=True; Encrypt=True; TrustServerCertificate=True; MultipleActiveResultSets=True;' Microsoft.EntityFrameworkCore.SqlServer --output-dir Models --context ModelContext --force
+
+dotnet publish -c Release -o ./publish
+git push origin main
